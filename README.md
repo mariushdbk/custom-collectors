@@ -1,1 +1,1 @@
-# custom-collectors
+Some util features for Java.
