@@ -30,8 +30,9 @@ public class ReversedDistributionFunction<T> {
     static class Builder<T> {
         private List<ValueWithWeight<T>> valuesWithWeights = new ArrayList<>();
 
-        void addValueWithWeight(T value, long weight) {
+        Builder<T> withValueOfWeight(T value, long weight) {
             valuesWithWeights.add(ValueWithWeight.of(value, weight));
+            return this;
         }
 
         ReversedDistributionFunction<T> build() {

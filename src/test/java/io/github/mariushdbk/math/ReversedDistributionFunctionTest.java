@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
@@ -16,15 +15,15 @@ public class ReversedDistributionFunctionTest {
 
     @Test
     public void distributionFunctionHistogramTest() {
-        ReversedDistributionFunction.Builder<String> builder = new ReversedDistributionFunction.Builder<>();
-        builder.addValueWithWeight("A", 2);
-        builder.addValueWithWeight("B", 1);
-        builder.addValueWithWeight("C", 7);
-        ReversedDistributionFunction<String> reversedDistributionFunction = builder.build();
+        ReversedDistributionFunction<String> function = new ReversedDistributionFunction.Builder<String>()
+                .withValueOfWeight("A", 2)
+                .withValueOfWeight("B", 1)
+                .withValueOfWeight("C", 7)
+                .build();
 
         List<String> result = new ArrayList<>();
         for (int i = 0; i < 100000; i++) {
-            result.add(reversedDistributionFunction.next());
+            result.add(function.next());
         }
 
         Map<String, Long> resultMap = result.stream()
